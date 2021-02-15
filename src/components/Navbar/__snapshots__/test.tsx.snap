@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navbar /> should render the heading 1`] = `
+.c0 {
+  padding: 0.8rem;
+}
+
+.c0 img {
+  height: 8rem;
+}
+
+<nav
+  class="c0"
+>
+  <img
+    alt="Um círculo com as cores do Brasil"
+    aria-label="frontend-br"
+    src="/img/logo.png"
+  />
+</nav>
+`;
