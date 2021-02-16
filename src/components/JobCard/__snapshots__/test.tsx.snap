@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<JobCard /> should render correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  height: auto;
+  border-left: 1rem solid #F231A5;
+  border-radius: 0.4rem;
+  background-color: #2E2F42;
+  color: #FAFAFA;
+  padding: 1.6rem;
+  cursor: pointer;
+  -webkit-transition: 200ms;
+  transition: 200ms;
+}
+
+.c0:hover {
+  -webkit-transform: scale(1.02);
+  -ms-transform: scale(1.02);
+  transform: scale(1.02);
+}
+
+.c1 {
+  font-size: 1.4rem;
+  text-align: justify;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0.8rem;
+}
+
+.c2 span:first-child {
+  margin-left: -1rem;
+}
+
+.c3 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: auto;
+  height: 2.4rem;
+  border-radius: 0.4rem;
+  padding: 0.8rem;
+  margin: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.c3 > svg {
+  cursor: pointer;
+}
+
+.c4 {
+  color: #F2F2F2;
+  margin-top: 0.8rem;
+  font-size: 1.2rem;
+}
+
+@media (max-width:768px) {
+  .c4 {
+    width: 100%;
+  }
+}
+
+<div
+  class="c0"
+>
+  <h1
+    class="c1"
+  >
+    [CURITIBA-PR] Web Designer @ Grupo A Educação
+  </h1>
+  <div
+    class="c2"
+  >
+    <span
+      class="c3"
+      style="background-color: rgb(108, 70, 234); color: rgb(250, 250, 250);"
+    >
+      Pleno
+    </span>
+    <span
+      class="c3"
+      style="background-color: rgb(127, 226, 102); color: rgb(3, 5, 23);"
+    >
+      CLT
+    </span>
+  </div>
+  <span
+    class="c4"
+  >
+    Publicado em: 
+    2021/02/15
+  </span>
+</div>
+`;
