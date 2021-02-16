@@ -1,5 +1,5 @@
-import { useCallback } from 'react'
-import tinyColor from 'tinycolor2'
+import formatColor from 'utils/formatColor'
+import formatDate from 'utils/formatDate'
 
 import * as S from './styles'
 
@@ -16,19 +16,6 @@ export type JobCardProps = {
 }
 
 const JobCard = ({ title, labels, created_at, html_url }: JobCardProps) => {
-  const formatColor = useCallback((hexadecimalColor) => {
-    const color = tinyColor(hexadecimalColor)
-
-    return color.isLight() ? '#030517' : '#FAFAFA'
-  }, [])
-
-  const formatDate = useCallback((date) => {
-    const dateSplit = date.split('T')
-    const ymd = dateSplit[0].split('-')
-
-    return `${ymd[2]}/${ymd[1]}/${ymd[0]}`
-  }, [])
-
   return (
     <S.Wrapper
       onClick={() => {
