@@ -1,9 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Main /> should render the heading 1`] = `
+.c5 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: linear-gradient(180deg,#ff5f5f 0%,#f062c0 50%);
+  color: #FAFAFA;
+  border: 0;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  padding: 0.8rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-weight: 600;
+  height: 4rem;
+  font-size: 1.4rem;
+  padding: 0.8rem 3.2rem;
+}
+
+.c5:hover {
+  background: linear-gradient(180deg,#e35565 0%,#d958a6 50%);
+}
+
 .c0 {
-  background-color: #06092b;
-  color: #fff;
+  color: #FAFAFA;
   width: 100%;
   height: 100%;
   display: -webkit-box;
@@ -14,7 +44,7 @@ exports[`<Main /> should render the heading 1`] = `
   -ms-flex-direction: column;
   flex-direction: column;
   text-align: center;
-  padding: 3rem;
+  padding: 3.2rem;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -23,6 +53,10 @@ exports[`<Main /> should render the heading 1`] = `
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+}
+
+.c0 .c4 {
+  margin-top: 3.2rem;
 }
 
 .c1 {
@@ -35,11 +69,6 @@ exports[`<Main /> should render the heading 1`] = `
 }
 
 .c3 {
-  font-size: 2rem;
-  font-weight: 400;
-}
-
-.c4 {
   margin-top: 3rem;
   width: min(30rem,100%);
 }
@@ -48,24 +77,29 @@ exports[`<Main /> should render the heading 1`] = `
   class="c0"
 >
   <img
-    alt="Imagem de um átomo e React Avançado escrito ao lado."
+    alt="Imagem de um círculo com as cores da bandeira do Brasil."
     class="c1"
     src="/img/logo.png"
   />
   <h1
     class="c2"
   >
-    React Avançado
+    title default
   </h1>
-  <h2
-    class="c3"
-  >
-    TypeScript, ReactJS, NextJS e Styled Components
-  </h2>
   <img
     alt="Um desenvolvedor de frente para uma tela com código."
-    class="c4"
+    class="c3"
     src="/img/hero-illustration.svg"
   />
+  <a
+    class="c4 c5"
+    href="/jobs"
+  >
+    <span>
+      Ver as 
+      344
+       vagas
+    </span>
+  </a>
 </main>
 `;

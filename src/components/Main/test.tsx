@@ -1,21 +1,28 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
+import { renderWithTheme } from 'utils/tests/helpers'
 
 import Main from '.'
 
+const props = {
+  title: 'title default',
+  jobs: '344'
+}
+
 describe('<Main />', () => {
   it('should render the heading', () => {
-    const { container } = render(<Main />)
+    const { container } = renderWithTheme(<Main {...props} />)
 
     expect(
-      screen.getByRole('heading', { name: /react avançado/i })
+      screen.getByRole('heading', {
+        name: /title default/i
+      })
     ).toBeInTheDocument()
 
+    expect(screen.getByRole('link', { name: /344/i })).toHaveAttribute(
+      'href',
+      '/jobs'
+    )
+
     expect(container.firstChild).toMatchSnapshot()
-  })
-
-  it('should render the colors correctly', () => {
-    const { container } = render(<Main />)
-
-    expect(container.firstChild).toHaveStyle({ 'background-color': '#06092b' })
   })
 })
