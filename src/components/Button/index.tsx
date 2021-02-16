@@ -7,14 +7,15 @@ type ButtonTypes =
 
 export type ButtonProps = {
   size?: 'small' | 'medium' | 'large'
+  fullWidth?: boolean
   as?: React.ElementType
 } & ButtonTypes
 
 const Button: React.ForwardRefRenderFunction<S.WrapperProps, ButtonProps> = (
-  { children, size = 'medium', ...props },
+  { children, size = 'medium', fullWidth = false, ...props },
   ref
 ) => (
-  <S.Wrapper size={size} ref={ref} {...props}>
+  <S.Wrapper size={size} fullWidth={fullWidth} ref={ref} {...props}>
     {!!children && <span>{children}</span>}
   </S.Wrapper>
 )

@@ -4,7 +4,7 @@ import { ButtonProps } from '.'
 
 export type WrapperProps = {
   hasIcon: boolean
-} & Pick<ButtonProps, 'size'>
+} & Pick<ButtonProps, 'size' | 'fullWidth'>
 
 const wrapperModifiers = {
   small: (theme: DefaultTheme) => css`
@@ -24,6 +24,10 @@ const wrapperModifiers = {
     padding: ${theme.spacings.xxsmall} ${theme.spacings.xlarge};
   `,
 
+  fullWidth: () => css`
+    width: 100%;
+  `,
+
   disabled: () => css`
     &:disabled {
       cursor: not-allowed;
@@ -33,7 +37,7 @@ const wrapperModifiers = {
 }
 
 export const Wrapper = styled.button<WrapperProps>`
-  ${({ theme, size, disabled }) => css`
+  ${({ theme, size, fullWidth, disabled }) => css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -51,7 +55,7 @@ export const Wrapper = styled.button<WrapperProps>`
     }
 
     ${!!size && wrapperModifiers[size](theme)};
-
+    ${!!fullWidth && wrapperModifiers.fullWidth()};
     ${disabled && wrapperModifiers.disabled()}
   `}
 `

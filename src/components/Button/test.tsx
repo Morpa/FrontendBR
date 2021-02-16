@@ -35,6 +35,14 @@ describe('<Button />', () => {
     })
   })
 
+  it('should render a fullWidth version', () => {
+    renderWithTheme(<Button fullWidth>Show</Button>)
+
+    expect(screen.getByRole('button', { name: /Show/i })).toHaveStyle({
+      width: '100%'
+    })
+  })
+
   it('should render a disabled Button', () => {
     renderWithTheme(<Button disabled>Show</Button>)
 
