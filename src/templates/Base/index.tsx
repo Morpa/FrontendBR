@@ -6,10 +6,10 @@ export type BaseTemplateProps = {
 }
 
 const Base = ({ children }: BaseTemplateProps) => (
-  <>
+  <Container>
     <Navbar />
-    <Container>{children}</Container>
-  </>
+    {children}
+  </Container>
 )
 
 export default Base
