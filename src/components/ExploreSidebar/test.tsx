@@ -21,10 +21,10 @@ describe('<ExploreSidebar />', () => {
     expect(screen.getByRole('checkbox', { name: /clt/i })).toBeInTheDocument()
   })
 
-  it('should render filter buttom', () => {
+  it('should render filter button', () => {
     renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} />)
 
-    expect(screen.getByRole('button', { name: /filter/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /filtrar/i })).toBeInTheDocument()
   })
 
   it('should check initial values that are passed', () => {
@@ -48,7 +48,7 @@ describe('<ExploreSidebar />', () => {
       />
     )
 
-    userEvent.click(screen.getByRole('button', { name: /filter/i }))
+    userEvent.click(screen.getByRole('button', { name: /filtrar/i }))
 
     expect(onFilter).toBeCalledWith({ clt: true })
   })
@@ -60,7 +60,7 @@ describe('<ExploreSidebar />', () => {
 
     userEvent.click(screen.getByLabelText(/CLT/i))
 
-    userEvent.click(screen.getByRole('button', { name: /filter/i }))
+    userEvent.click(screen.getByRole('button', { name: /filtrar/i }))
 
     expect(onFilter).toBeCalledWith({
       clt: true

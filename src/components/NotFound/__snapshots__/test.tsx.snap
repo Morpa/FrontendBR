@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NotFound /> should render the heading 1`] = `
+.c5 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  background: linear-gradient(180deg,#ff5f5f 0%,#f062c0 50%);
+  color: #FAFAFA;
+  border: 0;
+  cursor: pointer;
+  border-radius: 0.4rem;
+  padding: 0.8rem;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  font-weight: 600;
+  height: 4rem;
+  font-size: 1.4rem;
+  padding: 0.8rem 3.2rem;
+}
+
+.c5:hover {
+  background: linear-gradient(180deg,#e35565 0%,#d958a6 50%);
+}
+
+.c3 {
+  color: #FAFAFA;
+  position: relative;
+  margin-bottom: 3.2rem;
+  font-size: 2.0rem;
+}
+
+.c3::after {
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+  content: '';
+  width: 5rem;
+  border-bottom: 0.5rem solid #3CD3C1;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 5.6rem;
+}
+
+.c1 {
+  margin: 0.8rem;
+}
+
+@media (min-width:768px) {
+  .c3 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width:768px) {
+  .c0 .c2 {
+    font-size: 1.6rem;
+  }
+
+  .c0 .c4 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width:768px) {
+  .c1 {
+    width: 90%;
+  }
+}
+
+<main
+  class="c0"
+>
+  <img
+    alt="Um cachorrinho dormindo"
+    class="c1"
+    src="/img/notfound.png"
+  />
+  <h2
+    class="c2 c3"
+    color="white"
+  >
+    Página não encontrada
+  </h2>
+  <a
+    class="c4 c5"
+    href="/"
+  >
+    <span>
+      Voltar página inicial
+    </span>
+  </a>
+</main>
+`;
