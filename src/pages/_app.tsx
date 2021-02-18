@@ -3,8 +3,10 @@ import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { ThemeProvider } from 'styled-components'
 import { Router } from 'next/router'
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client'
 import NProgress from 'nprogress'
+
+import { useApollo } from 'utils/apollo'
 
 import GlobalStyles from 'styles/global'
 import theme from 'styles/theme'
@@ -24,10 +26,7 @@ Router.events.on('routeChangeError', () => {
 })
 
 function App({ Component, pageProps }: AppProps) {
-  const client = new ApolloClient({
-    uri: 'http://localhost:3333',
-    cache: new InMemoryCache()
-  })
+  const client = useApollo(pageProps.initialApolloState)
 
   return (
     <ApolloProvider client={client}>

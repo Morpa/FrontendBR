@@ -3,6 +3,7 @@
 exports[`<Navbar /> should render the heading 1`] = `
 .c0 {
   padding: 0.8rem;
+  cursor: pointer;
 }
 
 .c0 img {

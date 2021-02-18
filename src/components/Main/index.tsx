@@ -3,17 +3,16 @@ import Button from 'components/Button'
 import * as S from './styles'
 
 export type MainProps = {
-  title: string
   jobs: string
 }
 
-const Main = ({ title, jobs }: MainProps) => (
+const Main = ({ jobs }: MainProps) => (
   <S.Wrapper>
     <S.Logo
       src="/img/logo.png"
       alt="Imagem de um círculo com as cores da bandeira do Brasil."
     />
-    <S.Title>{title}</S.Title>
+    <S.Title>Espaço para divulgação de vagas para front-enders.</S.Title>
 
     <S.Illustration
       src="/img/hero-illustration.svg"

@@ -1,16 +1,26 @@
-import Jobs, { HomeTemplateProps } from 'templates/Jobs'
+import { initializeApollo } from 'utils/apollo'
+import { QUERY_JOBS } from 'graphql/queries/jobs'
+import { QueryJobs, QueryJobsVariables } from 'graphql/generated/QueryJobs'
 
+import Jobs, { HomeTemplateProps } from 'templates/Jobs'
 import filterItemsMock from 'components/ExploreSidebar/mock'
-import jobsMock from 'templates/Jobs/mock'
 
 export default function Home(props: HomeTemplateProps) {
   return <Jobs {...props} />
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  const apolloClient = initializeApollo()
+
+  const { data } = await apolloClient.query<QueryJobs, QueryJobsVariables>({
+    query: QUERY_JOBS,
+    variables: { limit: 9 }
+  })
+
   return {
     props: {
-      jobs: jobsMock,
+      revalidate: 60,
+      jobs: data.getJobs,
       filterItems: filterItemsMock
     }
   }

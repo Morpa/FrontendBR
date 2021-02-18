@@ -1,12 +1,15 @@
+import Link from 'next/link'
 import * as S from './styles'
 
 const Navbar = () => (
   <S.Wrapper>
-    <img
-      src="/img/logo.png"
-      alt="Um círculo com as cores do Brasil"
-      aria-label="frontend-br"
-    />
+    <Link href="/">
+      <img
+        src="/img/logo.png"
+        alt="Um círculo com as cores do Brasil"
+        aria-label="frontend-br"
+      />
+    </Link>
   </S.Wrapper>
 )
 
