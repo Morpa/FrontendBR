@@ -18,10 +18,9 @@ export type HomeTemplateProps = {
 }
 
 const Jobs = ({ filterItems }: HomeTemplateProps) => {
-  const { data, loading } = useQuery<QueryJobs, QueryJobsVariables>(
-    QUERY_JOBS,
-    { variables: { limit: 15 } }
-  )
+  const { data } = useQuery<QueryJobs, QueryJobsVariables>(QUERY_JOBS, {
+    variables: { limit: 15 }
+  })
 
   const handleFilter = () => {
     return
@@ -41,8 +40,8 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
             {data?.getJobs.map((job) => (
               <JobCard
                 key={job.id}
-                title={job.title}
-                html_url={job.url}
+                title={job?.title}
+                html_url={job.html_url}
                 created_at={job.created_at}
                 labels={job.labels}
               />

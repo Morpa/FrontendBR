@@ -5,7 +5,7 @@ export const QUERY_JOBS = gql`
     getJobs(limit: $limit) {
       id
       title
-      url
+      html_url
       created_at
       labels {
         node_id

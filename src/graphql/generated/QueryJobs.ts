@@ -18,9 +18,9 @@ export interface QueryJobs_getJobs {
   __typename: "Job";
   id: number;
   title: string;
-  url: string;
+  html_url: string;
   created_at: string;
-  labels: (QueryJobs_getJobs_labels)[] | null;
+  labels: (QueryJobs_getJobs_labels)[];
 }
 
 export interface QueryJobs {

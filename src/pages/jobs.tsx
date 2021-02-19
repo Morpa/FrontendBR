@@ -12,7 +12,7 @@ export default function Home(props: HomeTemplateProps) {
 export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
-  const { data } = await apolloClient.query<QueryJobs, QueryJobsVariables>({
+  await apolloClient.query<QueryJobs, QueryJobsVariables>({
     query: QUERY_JOBS,
     variables: { limit: 15 }
   })
@@ -20,7 +20,7 @@ export async function getStaticProps() {
   return {
     props: {
       revalidate: 60,
-      jobs: data.getJobs,
+      initialApolloState: apolloClient.cache.extract(),
       filterItems: filterItemsMock
     }
   }

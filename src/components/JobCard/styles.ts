@@ -34,10 +34,6 @@ export const LabelsWrapper = styled.div`
     flex-wrap: wrap;
     width: 100%;
     margin: ${theme.spacings.xxsmall};
-
-    & span:first-child {
-      margin-left: -1rem;
-    }
   `}
 `
 export const Label = styled.span`

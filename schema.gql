@@ -43,9 +43,9 @@ type Labels {
 type Job {
   id: Int!
   title: String!
-  url: String!
+  html_url: String!
   created_at: String!
-  labels: [Labels]
+  labels: [Labels]!
 }
 
 type Count {
@@ -55,7 +55,7 @@ type Count {
 type Query {
   getJobs(limit: Int!): [Job]!
   countJobs: Count!
-  getLabels: [Job]
+  getLabels: [Job]!
 }
 
 enum CacheControlScope {
