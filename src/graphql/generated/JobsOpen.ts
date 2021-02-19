@@ -13,5 +13,5 @@ export interface JobsOpen_countJobs {
 }
 
 export interface JobsOpen {
-  countJobs: JobsOpen_countJobs | null;
+  countJobs: JobsOpen_countJobs;
 }

@@ -10,7 +10,7 @@ type Labels = {
 
 export type JobCardProps = {
   title: string
-  labels: Labels[]
+  labels: Labels[] | null
   created_at: string
   html_url: string
 }

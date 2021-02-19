@@ -14,7 +14,7 @@ export async function getStaticProps() {
 
   const { data } = await apolloClient.query<QueryJobs, QueryJobsVariables>({
     query: QUERY_JOBS,
-    variables: { limit: 9 }
+    variables: { limit: 15 }
   })
 
   return {

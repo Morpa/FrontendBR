@@ -1,4 +1,8 @@
+import { useQuery } from '@apollo/client'
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown'
+
+import { QueryJobs, QueryJobsVariables } from 'graphql/generated/QueryJobs'
+import { QUERY_JOBS } from 'graphql/queries/jobs'
 
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
 import { Grid } from 'components/Grid'
@@ -13,7 +17,12 @@ export type HomeTemplateProps = {
   filterItems: ItemProps[]
 }
 
-const Jobs = ({ filterItems, jobs = [] }: HomeTemplateProps) => {
+const Jobs = ({ filterItems }: HomeTemplateProps) => {
+  const { data, loading } = useQuery<QueryJobs, QueryJobsVariables>(
+    QUERY_JOBS,
+    { variables: { limit: 15 } }
+  )
+
   const handleFilter = () => {
     return
   }
@@ -29,8 +38,14 @@ const Jobs = ({ filterItems, jobs = [] }: HomeTemplateProps) => {
 
         <section>
           <Grid>
-            {jobs.map((item) => (
-              <JobCard key={item.title} {...item} />
+            {data?.getJobs.map((job) => (
+              <JobCard
+                key={job.id}
+                title={job.title}
+                html_url={job.url}
+                created_at={job.created_at}
+                labels={job.labels}
+              />
             ))}
           </Grid>
 
