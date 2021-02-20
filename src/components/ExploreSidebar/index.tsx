@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Close } from '@styled-icons/material-outlined/Close'
 import { FilterList } from '@styled-icons/material-outlined/FilterList'
 import { ParsedUrlQueryInput } from 'querystring'
@@ -38,13 +38,19 @@ const ExploreSidebar = ({
   const [values, setValues] = useState(initialValues)
   const [isOpen, setIsOpen] = useState(false)
 
+  useEffect(() => {
+    onFilter(values)
+    // this method comes from another template
+    // that we don't access
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values])
+
   const handleChange = (name: string, value: string) => {
     const currentList = (values[name] as []) || []
     setValues((state) => ({ ...state, [name]: xor(currentList, [value]) }))
   }
 
-  const handleFilter = () => {
-    onFilter(values)
+  const handleFilterMenu = () => {
     setIsOpen(false)
   }
 
@@ -81,7 +87,7 @@ const ExploreSidebar = ({
       </S.Content>
 
       <S.Footer>
-        <Button fullWidth size="medium" onClick={handleFilter}>
+        <Button fullWidth size="medium" onClick={handleFilterMenu}>
           Filtrar
         </Button>
       </S.Footer>

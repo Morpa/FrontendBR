@@ -48,8 +48,6 @@ describe('<ExploreSidebar />', () => {
       />
     )
 
-    userEvent.click(screen.getByRole('button', { name: /filtrar/i }))
-
     expect(onFilter).toBeCalledWith({ labels: ['clt'] })
   })
 
@@ -59,10 +57,11 @@ describe('<ExploreSidebar />', () => {
     renderWithTheme(<ExploreSidebar items={items} onFilter={onFilter} />)
 
     userEvent.click(screen.getByLabelText(/clt/i))
+    userEvent.click(screen.getByLabelText(/remoto/i))
 
-    userEvent.click(screen.getByRole('button', { name: /filtrar/i }))
+    expect(onFilter).toHaveBeenCalledTimes(3)
 
-    expect(onFilter).toBeCalledWith({ labels: ['clt'] })
+    expect(onFilter).toBeCalledWith({ labels: ['clt', 'remoto'] })
   })
 
   it('should open/close sidebar when filtering on mobile ', () => {
@@ -86,6 +85,12 @@ describe('<ExploreSidebar />', () => {
     expect(Element).toHaveStyleRule('opacity', '1', variant)
 
     userEvent.click(screen.getByLabelText(/close filters/))
+
+    expect(Element).not.toHaveStyleRule('opacity', '1', variant)
+
+    userEvent.click(screen.getByLabelText(/open filters/))
+
+    userEvent.click(screen.getByRole('button', { name: /filtrar/i }))
 
     expect(Element).not.toHaveStyleRule('opacity', '1', variant)
   })
