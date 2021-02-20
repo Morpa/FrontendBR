@@ -12,7 +12,7 @@ describe('<ExploreSidebar />', () => {
   it('should render the headings', () => {
     renderWithTheme(<ExploreSidebar items={items} onFilter={jest.fn} />)
 
-    expect(screen.getByRole('heading', { name: /tags/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /labels/i })).toBeInTheDocument()
   })
 
   it('should render inputs', () => {
@@ -31,7 +31,7 @@ describe('<ExploreSidebar />', () => {
     renderWithTheme(
       <ExploreSidebar
         items={items}
-        initialValues={{ clt: true }}
+        initialValues={{ labels: ['clt'] }}
         onFilter={jest.fn}
       />
     )
@@ -43,14 +43,14 @@ describe('<ExploreSidebar />', () => {
     renderWithTheme(
       <ExploreSidebar
         items={items}
-        initialValues={{ clt: true }}
+        initialValues={{ labels: ['clt'] }}
         onFilter={onFilter}
       />
     )
 
     userEvent.click(screen.getByRole('button', { name: /filtrar/i }))
 
-    expect(onFilter).toBeCalledWith({ clt: true })
+    expect(onFilter).toBeCalledWith({ labels: ['clt'] })
   })
 
   it('should filter checked values', () => {
@@ -58,13 +58,11 @@ describe('<ExploreSidebar />', () => {
 
     renderWithTheme(<ExploreSidebar items={items} onFilter={onFilter} />)
 
-    userEvent.click(screen.getByLabelText(/CLT/i))
+    userEvent.click(screen.getByLabelText(/clt/i))
 
     userEvent.click(screen.getByRole('button', { name: /filtrar/i }))
 
-    expect(onFilter).toBeCalledWith({
-      clt: true
-    })
+    expect(onFilter).toBeCalledWith({ labels: ['clt'] })
   })
 
   it('should open/close sidebar when filtering on mobile ', () => {

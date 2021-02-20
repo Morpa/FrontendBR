@@ -3,7 +3,7 @@ import { ParsedUrlQueryInput } from 'querystring'
 
 type ParseArgs = {
   queryString: ParsedUrlQueryInput
-  filterItems: Pick<ItemProps, 'type' | 'name'>[]
+  filterItems: Pick<ItemProps, 'name'>[]
 }
 
 export const parsedQueryStringToFilter = ({
@@ -14,6 +14,8 @@ export const parsedQueryStringToFilter = ({
   const obj: any = {}
 
   Object.keys(queryString).forEach((key) => {
+    filterItems?.find((item) => item.name === key)
+
     obj[key] = queryString[key]
   })
 

@@ -19,6 +19,6 @@ export const Default: Story<ExploreSidebarProps> = (args) => (
 
 export const WithInitialValues: Story<ExploreSidebarProps> = (args) => (
   <div style={{ padding: 16, maxWidth: 320 }}>
-    <ExploreSidebar {...args} initialValues={{ clt: true }} />
+    <ExploreSidebar {...args} initialValues={{ labels: ['remoto', 'clt'] }} />
   </div>
 )

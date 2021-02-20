@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Close } from '@styled-icons/material-outlined/Close'
 import { FilterList } from '@styled-icons/material-outlined/FilterList'
+import { ParsedUrlQueryInput } from 'querystring'
+import { xor } from 'lodash'
 
 import Button from 'components/Button'
 import Checkbox from 'components/Checkbox'
@@ -20,9 +22,7 @@ export type ItemProps = {
   fields: Field[]
 }
 
-type Values = {
-  [field: string]: boolean | string
-}
+type Values = ParsedUrlQueryInput
 
 export type ExploreSidebarProps = {
   items: ItemProps[]
@@ -38,8 +38,9 @@ const ExploreSidebar = ({
   const [values, setValues] = useState(initialValues)
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleChange = (name: string, value: string | boolean) => {
-    setValues((s) => ({ ...s, [name]: value }))
+  const handleChange = (name: string, value: string) => {
+    const currentList = (values[name] as []) || []
+    setValues((state) => ({ ...state, [name]: xor(currentList, [value]) }))
   }
 
   const handleFilter = () => {
@@ -69,8 +70,10 @@ const ExploreSidebar = ({
                   name={field.name}
                   label={field.label}
                   labelFor={field.name}
-                  isChecked={!!values[field.name]}
-                  onCheck={(v) => handleChange(field.name, v)}
+                  isChecked={(values[item.name] as string[])?.includes(
+                    field.name
+                  )}
+                  onCheck={() => handleChange(item.name, field.name)}
                 />
               ))}
           </S.Items>
