@@ -4,7 +4,6 @@ import { renderWithTheme } from 'utils/tests/helpers'
 import Main from '.'
 
 const props = {
-  title: 'title default',
   jobs: '344'
 }
 
@@ -14,7 +13,7 @@ describe('<Main />', () => {
 
     expect(
       screen.getByRole('heading', {
-        name: /title default/i
+        name: /Espaço para divulgação de vagas para front-enders./i
       })
     ).toBeInTheDocument()
 

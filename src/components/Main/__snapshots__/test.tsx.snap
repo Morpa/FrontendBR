@@ -84,7 +84,7 @@ exports[`<Main /> should render the heading 1`] = `
   <h1
     class="c2"
   >
-    title default
+    Espaço para divulgação de vagas para front-enders.
   </h1>
   <img
     alt="Um desenvolvedor de frente para uma tela com código."

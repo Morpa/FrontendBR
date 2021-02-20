@@ -51,10 +51,6 @@ exports[`<JobCard /> should render correctly 1`] = `
   margin: 0.8rem;
 }
 
-.c2 span:first-child {
-  margin-left: -1rem;
-}
-
 .c3 {
   display: -webkit-box;
   display: -webkit-flex;
