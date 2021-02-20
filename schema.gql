@@ -1,6 +1,8 @@
 directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | OBJECT | INTERFACE
 
-"""Direct the client to resolve this field locally, either from the cache or local resolvers."""
+"""
+Direct the client to resolve this field locally, either from the cache or local resolvers.
+"""
 directive @client(
   """
   When true, the client will never use the cache for this value. See
@@ -25,7 +27,10 @@ https://www.apollographql.com/docs/react/advanced/caching/#the-connection-direct
 directive @connection(
   """Specify the store key."""
   key: String!
-  """An array of query argument names to include in the generated custom store key."""
+
+  """
+  An array of query argument names to include in the generated custom store key.
+  """
   filter: [String!]
 ) on FIELD
 
@@ -47,7 +52,7 @@ type Count {
 }
 
 type Query {
-  getJobs(limit: Int!, currentPage: Int!): [Job]!
+  getJobs(limit: Int!, currentPage: Int!, filter: String): [Job]!
   countJobs: Count!
   getLabels: [Job]!
 }
