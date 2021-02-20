@@ -8,7 +8,7 @@ export default {
   component: ExploreSidebar,
   args: {
     items,
-    onFilter:()=> console.log('filter');
+    onFilter: () => console.log('filter')
   }
 } as Meta
 
