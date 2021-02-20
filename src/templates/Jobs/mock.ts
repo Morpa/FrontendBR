@@ -22,3 +22,26 @@ export const jobsMock = {
     }
   }
 }
+export const fetchMoreJobs = {
+  request: {
+    query: QUERY_JOBS,
+    variables: { currentPage: 2, limit: 15 }
+  },
+  result: {
+    data: {
+      getJobs: [
+        {
+          id: 2,
+          title: 'More Job',
+          html_url: 'http://job.com',
+          created_at: '2021-02-15T19:52:17Z',
+          labels: [
+            { name: 'Pleno', color: '6c46ea', __typename: 'Labels' },
+            { name: 'CLT', color: '7fe266', __typename: 'Labels' }
+          ],
+          __typename: 'Job'
+        }
+      ]
+    }
+  }
+}

@@ -1,12 +1,14 @@
 import { screen } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
+import userEvent from '@testing-library/user-event'
 
 import { renderWithTheme } from 'utils/tests/helpers'
+import apolloCache from 'utils/apolloCache'
 
 import filterItemsMock from 'components/ExploreSidebar/mock'
 
 import Jobs from '.'
-import { jobsMock } from './mock'
+import { fetchMoreJobs, jobsMock } from './mock'
 
 jest.mock('templates/Base', () => ({
   __esModule: true,
@@ -45,7 +47,23 @@ describe('<Jobs />', () => {
     expect(await screen.findByText(/job/i)).toBeInTheDocument()
 
     expect(
-      screen.getByRole('button', { name: /carregar mais/i })
+      await screen.findByRole('button', { name: /carregar mais/i })
     ).toBeInTheDocument()
+  })
+
+  it('should render more jobs when show more is clicked', async () => {
+    renderWithTheme(
+      <MockedProvider mocks={[jobsMock, fetchMoreJobs]} cache={apolloCache}>
+        <Jobs filterItems={filterItemsMock} />
+      </MockedProvider>
+    )
+
+    expect(await screen.findByText(/job/i)).toBeInTheDocument()
+
+    userEvent.click(
+      await screen.findByRole('button', { name: /carregar mais/i })
+    )
+
+    expect(await screen.findByText(/more job/i)).toBeInTheDocument()
   })
 })

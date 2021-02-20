@@ -34,8 +34,8 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
   }
 
   const handleShowMore = () => {
-    fetchMore({ variables: { currentPage: currentPage, limit: 15 } })
     setCurrentPage(currentPage + 1)
+    fetchMore({ variables: { currentPage: currentPage, limit: 15 } })
   }
 
   return (

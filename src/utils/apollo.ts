@@ -1,11 +1,7 @@
-import {
-  ApolloClient,
-  HttpLink,
-  InMemoryCache,
-  NormalizedCacheObject
-} from '@apollo/client'
-import { concatPagination } from '@apollo/client/utilities'
+import { ApolloClient, HttpLink, NormalizedCacheObject } from '@apollo/client'
 import { useMemo } from 'react'
+
+import apolloCache from './apolloCache'
 
 let apolloClient: ApolloClient<NormalizedCacheObject>
 
@@ -13,15 +9,7 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     link: new HttpLink({ uri: process.env.NEXT_PUBLIC_API_URL }),
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            getJobs: concatPagination()
-          }
-        }
-      }
-    })
+    cache: apolloCache
   })
 }
 
