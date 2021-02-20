@@ -29,4 +29,5 @@ export interface QueryJobs {
 
 export interface QueryJobsVariables {
   limit: number;
+  currentPage: number;
 }

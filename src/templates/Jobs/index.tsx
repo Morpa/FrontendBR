@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useQuery } from '@apollo/client'
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown'
 
@@ -18,16 +19,22 @@ export type HomeTemplateProps = {
 }
 
 const Jobs = ({ filterItems }: HomeTemplateProps) => {
-  const { data } = useQuery<QueryJobs, QueryJobsVariables>(QUERY_JOBS, {
-    variables: { limit: 15 }
-  })
+  const [currentPage, setCurrentPage] = useState(2)
+
+  const { data, fetchMore } = useQuery<QueryJobs, QueryJobsVariables>(
+    QUERY_JOBS,
+    {
+      variables: { currentPage: currentPage, limit: 15 }
+    }
+  )
 
   const handleFilter = () => {
     return
   }
 
   const handleShowMore = () => {
-    return
+    fetchMore({ variables: { currentPage: currentPage, limit: 15 } })
+    setCurrentPage(currentPage + 1)
   }
 
   return (
