@@ -7,14 +7,13 @@ import { QUERY_JOBS } from 'graphql/queries/jobs'
 
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
 import { Grid } from 'components/Grid'
-import JobCard, { JobCardProps } from 'components/JobCard'
+import JobCard from 'components/JobCard'
 
 import Base from 'templates/Base'
 
 import * as S from './styles'
 
 export type HomeTemplateProps = {
-  jobs: JobCardProps[]
   filterItems: ItemProps[]
 }
 
@@ -27,6 +26,8 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
       variables: { currentPage: currentPage, limit: 15 }
     }
   )
+
+  if (!data) return <p>Loading...</p>
 
   const handleFilter = () => {
     return
@@ -42,24 +43,25 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
       <S.Main>
         <ExploreSidebar items={filterItems} onFilter={handleFilter} />
 
-        <section>
-          <Grid>
-            {data?.getJobs.map((job) => (
-              <JobCard
-                key={job.id}
-                title={job?.title}
-                html_url={job.html_url}
-                created_at={job.created_at}
-                labels={job.labels}
-              />
-            ))}
-          </Grid>
-
-          <S.ShowMore role="button" onClick={handleShowMore}>
-            <p>Carregar mais</p>
-            <ArrowDown size={35} />
-          </S.ShowMore>
-        </section>
+        {
+          <section>
+            <Grid>
+              {data?.getJobs.map((job) => (
+                <JobCard
+                  key={job.id}
+                  title={job?.title}
+                  html_url={job.html_url}
+                  created_at={job.created_at}
+                  labels={job.labels}
+                />
+              ))}
+            </Grid>
+            <S.ShowMore role="button" onClick={handleShowMore}>
+              <p>Carregar mais</p>
+              <ArrowDown size={35} />
+            </S.ShowMore>
+          </section>
+        }
       </S.Main>
     </Base>
   )

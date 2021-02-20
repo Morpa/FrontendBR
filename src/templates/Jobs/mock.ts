@@ -1,65 +1,24 @@
-export default [
-  {
-    title:
-      '[Remoto] Front-End Developer ReactJs/ReactNative Pleno ou Sênior na Softo',
-    labels: [
-      {
-        name: 'PJ',
-        color: '7fe266'
-      },
-      {
-        name: 'Pleno',
-        color: '6c46ea'
-      },
-      {
-        name: 'Remoto',
-        color: '6befe6'
-      },
-      {
-        name: 'Sênior',
-        color: '6c46ea'
-      }
-    ],
-    created_at: '2021-02-17T20:02:02Z',
-    html_url: 'https://github.com/frontendbr/vagas/issues/4308'
+import { QUERY_JOBS } from 'graphql/queries/jobs'
+
+export const jobsMock = {
+  request: {
+    query: QUERY_JOBS,
+    variables: { currentPage: 2, limit: 15 }
   },
-  {
-    title:
-      '[Remoto-Florianópolis/SC] Front-end Developer na MBS - Oportunidade de ter seu negócio"',
-    labels: [
-      {
-        name: 'PJ',
-        color: '7fe266'
-      },
-      {
-        name: 'Pleno',
-        color: '6c46ea'
-      },
-      {
-        name: 'Remoto',
-        color: '6befe6'
-      }
-    ],
-    created_at: '2021-01-17T20:02:02Z',
-    html_url: 'https://github.com/frontendbr/vagas/issues/4308'
-  },
-  {
-    title: "[Santa Barbara D'Oeste - Remoto] Front-End Developer na 2SOW",
-    labels: [
-      {
-        name: 'PJ',
-        color: '7fe266'
-      },
-      {
-        name: 'Pleno',
-        color: '6c46ea'
-      },
-      {
-        name: 'Remoto',
-        color: '6befe6'
-      }
-    ],
-    created_at: '2021-01-17T20:02:02Z',
-    html_url: 'https://github.com/frontendbr/vagas/issues/4308'
+  result: {
+    data: {
+      getJobs: [
+        {
+          id: 1,
+          title: 'Job',
+          html_url: 'http://job.com',
+          created_at: '2021-02-15T19:52:17Z',
+          labels: [
+            { name: 'Pleno', color: '6c46ea' },
+            { name: 'CLT', color: '7fe266' }
+          ]
+        }
+      ]
+    }
   }
-]
+}

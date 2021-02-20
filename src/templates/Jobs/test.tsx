@@ -1,10 +1,12 @@
 import { screen } from '@testing-library/react'
+import { MockedProvider } from '@apollo/client/testing'
+
 import { renderWithTheme } from 'utils/tests/helpers'
 
 import filterItemsMock from 'components/ExploreSidebar/mock'
-import jobsMock from 'templates/Jobs/mock'
 
 import Jobs from '.'
+import { jobsMock } from './mock'
 
 jest.mock('templates/Base', () => ({
   __esModule: true,
@@ -20,20 +22,27 @@ jest.mock('components/ExploreSidebar', () => ({
   }
 }))
 
-jest.mock('components/JobCard', () => ({
-  __esModule: true,
-  default: function Mock() {
-    return <div data-testid="Mock JobCard" />
-  }
-}))
-
 describe('<Jobs />', () => {
-  it('should render sections', () => {
-    renderWithTheme(<Jobs filterItems={filterItemsMock} jobs={[jobsMock[0]]} />)
+  it('should render loading when starting template', async () => {
+    renderWithTheme(
+      <MockedProvider mocks={[]} addTypename={false}>
+        <Jobs filterItems={filterItemsMock} />
+      </MockedProvider>
+    )
 
-    expect(screen.getByTestId('Mock ExploreSidebar')).toBeInTheDocument()
+    expect(screen.getByText(/loading.../i)).toBeInTheDocument()
+  })
 
-    expect(screen.getByTestId('Mock JobCard')).toBeInTheDocument()
+  it('should render sections', async () => {
+    renderWithTheme(
+      <MockedProvider mocks={[jobsMock]} addTypename={false}>
+        <Jobs filterItems={filterItemsMock} />
+      </MockedProvider>
+    )
+
+    expect(await screen.findByTestId('Mock ExploreSidebar')).toBeInTheDocument()
+
+    expect(await screen.findByText(/job/i)).toBeInTheDocument()
 
     expect(
       screen.getByRole('button', { name: /carregar mais/i })

@@ -9,7 +9,6 @@
 
 export interface QueryJobs_getJobs_labels {
   __typename: "Labels";
-  node_id: string;
   name: string;
   color: string;
 }
@@ -20,11 +19,11 @@ export interface QueryJobs_getJobs {
   title: string;
   html_url: string;
   created_at: string;
-  labels: (QueryJobs_getJobs_labels)[];
+  labels: QueryJobs_getJobs_labels[];
 }
 
 export interface QueryJobs {
-  getJobs: (QueryJobs_getJobs)[];
+  getJobs: QueryJobs_getJobs[];
 }
 
 export interface QueryJobsVariables {

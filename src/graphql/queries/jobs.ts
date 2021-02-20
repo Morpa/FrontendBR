@@ -8,7 +8,6 @@ export const QUERY_JOBS = gql`
       html_url
       created_at
       labels {
-        node_id
         name
         color
       }
