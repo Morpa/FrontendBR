@@ -1,9 +1,12 @@
 import { useState } from 'react'
+import { useRouter } from 'next/router'
 import { useQuery } from '@apollo/client'
+import { ParsedUrlQueryInput } from 'querystring'
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown'
 
 import { QueryJobs, QueryJobsVariables } from 'graphql/generated/QueryJobs'
 import { QUERY_JOBS } from 'graphql/queries/jobs'
+import { parsedQueryStringToFilter } from 'utils/filter'
 
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
 import { Grid } from 'components/Grid'
@@ -18,18 +21,31 @@ export type HomeTemplateProps = {
 }
 
 const Jobs = ({ filterItems }: HomeTemplateProps) => {
+  const { push, query } = useRouter()
+
   const [currentPage, setCurrentPage] = useState(2)
 
   const { data, fetchMore } = useQuery<QueryJobs, QueryJobsVariables>(
     QUERY_JOBS,
     {
-      variables: { currentPage: currentPage, limit: 15 }
+      variables: {
+        currentPage: currentPage,
+        limit: 15,
+        filter: parsedQueryStringToFilter({
+          queryString: query,
+          filterItems
+        }).label
+      }
     }
   )
 
   if (!data) return <p>Loading...</p>
 
-  const handleFilter = () => {
+  const handleFilter = (items: ParsedUrlQueryInput) => {
+    push({
+      pathname: '/jobs',
+      query: items
+    })
     return
   }
 
@@ -41,7 +57,14 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
   return (
     <Base>
       <S.Main>
-        <ExploreSidebar items={filterItems} onFilter={handleFilter} />
+        <ExploreSidebar
+          initialValues={parsedQueryStringToFilter({
+            queryString: query,
+            filterItems
+          })}
+          items={filterItems}
+          onFilter={handleFilter}
+        />
 
         {
           <section>

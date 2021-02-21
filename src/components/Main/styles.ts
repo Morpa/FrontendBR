@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
 import * as ButtonStyles from 'components/Button/styles'
+import media from 'styled-media-query'
 
 export const Wrapper = styled.main`
   ${({ theme }) => css`
@@ -27,6 +28,11 @@ export const Logo = styled.img`
 
 export const Title = styled.h1`
   font-size: 2.5rem;
+  text-align: center;
+
+  ${media.lessThan('medium')`
+    font-size: 1.8rem;
+  `}
 `
 
 export const Illustration = styled.img`

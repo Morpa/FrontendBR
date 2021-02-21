@@ -13,8 +13,16 @@ export default [
         name: 'pj'
       },
       {
+        label: 'Alocado',
+        name: 'alocado'
+      },
+      {
         label: 'Remoto',
         name: 'remoto'
+      },
+      {
+        label: 'Especialista',
+        name: 'especialista'
       },
       {
         label: 'Sênior',
@@ -25,8 +33,12 @@ export default [
         name: 'pleno'
       },
       {
-        label: 'Discounted',
-        name: 'discounted'
+        label: 'Junior',
+        name: 'junior'
+      },
+      {
+        label: 'Estágio',
+        name: 'estagio'
       }
     ]
   }
