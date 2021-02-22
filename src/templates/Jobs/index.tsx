@@ -24,7 +24,8 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
 
   const [currentPage, setCurrentPage] = useState(2)
 
-  const { data, fetchMore } = useQueryJobs({
+  const { data, loading, fetchMore } = useQueryJobs({
+    notifyOnNetworkStatusChange: true,
     variables: {
       currentPage: currentPage,
       limit: 15,
@@ -77,9 +78,18 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
                     />
                   ))}
                 </Grid>
-                <S.ShowMore role="button" onClick={handleShowMore}>
-                  <p>Carregar mais</p>
-                  <ArrowDown size={35} />
+                <S.ShowMore>
+                  {loading ? (
+                    <S.ShowMoreLoading
+                      src="/img/dots.svg"
+                      alt="Carregando mais vagas..."
+                    />
+                  ) : (
+                    <S.ShowMoreButton role="button" onClick={handleShowMore}>
+                      <p>Carregar mais</p>
+                      <ArrowDown size={35} />
+                    </S.ShowMoreButton>
+                  )}
                 </S.ShowMore>
               </>
             ) : (
