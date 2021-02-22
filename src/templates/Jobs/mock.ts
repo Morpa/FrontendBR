@@ -1,5 +1,17 @@
 import { QUERY_JOBS } from 'graphql/queries/jobs'
 
+export const noJobsMock = {
+  request: {
+    query: QUERY_JOBS,
+    variables: { currentPage: 2, limit: 15, filter: undefined }
+  },
+  result: {
+    data: {
+      getJobs: []
+    }
+  }
+}
+
 export const jobsMock = {
   request: {
     query: QUERY_JOBS,
@@ -22,6 +34,7 @@ export const jobsMock = {
     }
   }
 }
+
 export const fetchMoreJobs = {
   request: {
     query: QUERY_JOBS,

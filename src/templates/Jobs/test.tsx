@@ -8,7 +8,7 @@ import apolloCache from 'utils/apolloCache'
 import filterItemsMock from 'components/ExploreSidebar/mock'
 
 import Jobs from '.'
-import { fetchMoreJobs, jobsMock } from './mock'
+import { fetchMoreJobs, jobsMock, noJobsMock } from './mock'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
@@ -72,5 +72,17 @@ describe('<Jobs />', () => {
       pathname: '/jobs',
       query: { filter: ['clt'] }
     })
+  })
+
+  it('should render empty when no jobs found', async () => {
+    renderWithTheme(
+      <MockedProvider mocks={[noJobsMock]} addTypename={false}>
+        <Jobs filterItems={filterItemsMock} />
+      </MockedProvider>
+    )
+
+    expect(
+      await screen.findByText(/A vaga que você procura não existe/i)
+    ).toBeInTheDocument()
   })
 })

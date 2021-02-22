@@ -8,7 +8,10 @@ export const Wrapper = styled.main`
 `
 
 export const Image = styled.img`
-  max-width: 100%;
+  ${({ theme }) => css`
+    max-width: 100%;
+    margin-top: ${theme.spacings.xsmall};
+  `}
 `
 
 export const Title = styled.h2`

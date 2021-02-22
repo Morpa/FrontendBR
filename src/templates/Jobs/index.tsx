@@ -13,6 +13,7 @@ import JobCard from 'components/JobCard'
 import Base from 'templates/Base'
 
 import * as S from './styles'
+import Empty from 'components/Empty'
 
 export type HomeTemplateProps = {
   filterItems: ItemProps[]
@@ -63,21 +64,31 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
 
         {
           <section>
-            <Grid>
-              {data?.getJobs.map((job) => (
-                <JobCard
-                  key={job.id}
-                  title={job.title}
-                  html_url={job.html_url}
-                  created_at={job.created_at}
-                  labels={job.labels}
-                />
-              ))}
-            </Grid>
-            <S.ShowMore role="button" onClick={handleShowMore}>
-              <p>Carregar mais</p>
-              <ArrowDown size={35} />
-            </S.ShowMore>
+            {data.getJobs.length ? (
+              <>
+                <Grid>
+                  {data?.getJobs.map((job) => (
+                    <JobCard
+                      key={job.id}
+                      title={job.title}
+                      html_url={job.html_url}
+                      created_at={job.created_at}
+                      labels={job.labels}
+                    />
+                  ))}
+                </Grid>
+                <S.ShowMore role="button" onClick={handleShowMore}>
+                  <p>Carregar mais</p>
+                  <ArrowDown size={35} />
+                </S.ShowMore>
+              </>
+            ) : (
+              <Empty
+                title="Opss..."
+                description="A vaga que você procura não existe"
+                hasLink
+              />
+            )}
           </section>
         }
       </S.Main>
