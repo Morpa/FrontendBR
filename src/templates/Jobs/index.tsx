@@ -1,11 +1,9 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { useQuery } from '@apollo/client'
 import { ParsedUrlQueryInput } from 'querystring'
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown'
 
-import { QueryJobs, QueryJobsVariables } from 'graphql/generated/QueryJobs'
-import { QUERY_JOBS } from 'graphql/queries/jobs'
+import { useQueryJobs } from 'graphql/queries/jobs'
 import { parsedQueryStringToFilter } from 'utils/filter'
 
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
@@ -25,19 +23,16 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
 
   const [currentPage, setCurrentPage] = useState(2)
 
-  const { data, fetchMore } = useQuery<QueryJobs, QueryJobsVariables>(
-    QUERY_JOBS,
-    {
-      variables: {
-        currentPage: currentPage,
-        limit: 15,
-        filter: parsedQueryStringToFilter({
-          queryString: query,
-          filterItems
-        }).label
-      }
+  const { data, fetchMore } = useQueryJobs({
+    variables: {
+      currentPage: currentPage,
+      limit: 15,
+      filter: parsedQueryStringToFilter({
+        queryString: query,
+        filterItems
+      }).filter
     }
-  )
+  })
 
   if (!data) return <p>Loading...</p>
 
@@ -72,7 +67,7 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
               {data?.getJobs.map((job) => (
                 <JobCard
                   key={job.id}
-                  title={job?.title}
+                  title={job.title}
                   html_url={job.html_url}
                   created_at={job.created_at}
                   labels={job.labels}

@@ -17,7 +17,7 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
 
   const filterLabels = {
     title: 'Labels',
-    name: 'labels',
+    name: 'filter',
     type: 'checkbox',
     fields: [
       {
@@ -69,7 +69,7 @@ export async function getServerSideProps({ query }: GetServerSidePropsContext) {
       filter: parsedQueryStringToFilter({
         queryString: query,
         filterItems
-      }).label
+      }).filter
     }
   })
 

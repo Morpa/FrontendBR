@@ -28,6 +28,6 @@ export interface QueryJobs {
 
 export interface QueryJobsVariables {
   limit: number;
-  currentPage: number;
+  currentPage?: number | null;
   filter?: string[] | null;
 }

@@ -52,7 +52,7 @@ type Count {
 }
 
 type Query {
-  getJobs(limit: Int!, currentPage: Int!, filter: [String]): [Job]!
+  getJobs(limit: Int!, currentPage: Int, filter: [String]): [Job]!
   countJobs: Count!
   getLabels: [Job]!
 }
