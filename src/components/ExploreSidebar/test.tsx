@@ -61,7 +61,7 @@ describe('<ExploreSidebar />', () => {
 
     expect(onFilter).toHaveBeenCalledTimes(3)
 
-    expect(onFilter).toBeCalledWith({ labels: ['clt', 'remoto'] })
+    expect(onFilter).toBeCalledWith({ filter: ['clt', 'remoto'] })
   })
 
   it('should open/close sidebar when filtering on mobile ', () => {

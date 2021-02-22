@@ -66,11 +66,18 @@ exports[`<Main /> should render the heading 1`] = `
 
 .c2 {
   font-size: 2.5rem;
+  text-align: center;
 }
 
 .c3 {
   margin-top: 3rem;
   width: min(30rem,100%);
+}
+
+@media (max-width:768px) {
+  .c2 {
+    font-size: 1.8rem;
+  }
 }
 
 <main

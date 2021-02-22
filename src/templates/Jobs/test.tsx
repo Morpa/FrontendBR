@@ -10,6 +10,17 @@ import filterItemsMock from 'components/ExploreSidebar/mock'
 import Jobs from '.'
 import { fetchMoreJobs, jobsMock } from './mock'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const useRouter = jest.spyOn(require('next/router'), 'useRouter')
+const push = jest.fn()
+
+useRouter.mockImplementation(() => ({
+  push,
+  query: '',
+  asPath: '',
+  route: '/'
+}))
+
 jest.mock('templates/Base', () => ({
   __esModule: true,
   default: function Mock({ children }: { children: React.ReactNode }) {
@@ -17,32 +28,13 @@ jest.mock('templates/Base', () => ({
   }
 }))
 
-jest.mock('components/ExploreSidebar', () => ({
-  __esModule: true,
-  default: function Mock({ children }: { children: React.ReactNode }) {
-    return <div data-testid="Mock ExploreSidebar">{children}</div>
-  }
-}))
-
 describe('<Jobs />', () => {
-  it('should render loading when starting template', async () => {
-    renderWithTheme(
-      <MockedProvider mocks={[]} addTypename={false}>
-        <Jobs filterItems={filterItemsMock} />
-      </MockedProvider>
-    )
-
-    expect(screen.getByText(/loading.../i)).toBeInTheDocument()
-  })
-
   it('should render sections', async () => {
     renderWithTheme(
       <MockedProvider mocks={[jobsMock]} addTypename={false}>
         <Jobs filterItems={filterItemsMock} />
       </MockedProvider>
     )
-
-    expect(await screen.findByTestId('Mock ExploreSidebar')).toBeInTheDocument()
 
     expect(await screen.findByText(/job/i)).toBeInTheDocument()
 
@@ -65,5 +57,20 @@ describe('<Jobs />', () => {
     )
 
     expect(await screen.findByText(/more job/i)).toBeInTheDocument()
+  })
+
+  it('should change push router when selecting a filter', async () => {
+    renderWithTheme(
+      <MockedProvider mocks={[jobsMock, fetchMoreJobs]} cache={apolloCache}>
+        <Jobs filterItems={filterItemsMock} />
+      </MockedProvider>
+    )
+
+    userEvent.click(await screen.findByRole('checkbox', { name: /clt/i }))
+
+    expect(push).toHaveBeenCalledWith({
+      pathname: '/jobs',
+      query: { filter: ['clt'] }
+    })
   })
 })

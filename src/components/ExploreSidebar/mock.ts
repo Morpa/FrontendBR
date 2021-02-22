@@ -1,7 +1,7 @@
 export default [
   {
     title: 'Labels',
-    name: 'labels',
+    name: 'filter',
     type: 'checkbox',
     fields: [
       {
