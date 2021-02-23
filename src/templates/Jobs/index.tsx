@@ -4,6 +4,7 @@ import { ParsedUrlQueryInput } from 'querystring'
 import { KeyboardArrowDown as ArrowDown } from '@styled-icons/material-outlined/KeyboardArrowDown'
 
 import { useQueryJobs } from 'graphql/queries/jobs'
+import { useQueryCountJobs } from 'graphql/queries/count_jobs'
 import { parsedQueryStringToFilter } from 'utils/filter'
 
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
@@ -36,7 +37,18 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
     }
   })
 
+  const { data: count } = useQueryCountJobs({
+    variables: {
+      filter: parsedQueryStringToFilter({
+        queryString: query,
+        filterItems
+      }).filter
+    }
+  })
+
   if (!data) return <p>Loading...</p>
+
+  const hasMoreJobs = data.getJobs.length < (count?.getQuantity || 0)
 
   const handleFilter = (items: ParsedUrlQueryInput) => {
     push({
@@ -78,19 +90,21 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
                     />
                   ))}
                 </Grid>
-                <S.ShowMore>
-                  {loading ? (
-                    <S.ShowMoreLoading
-                      src="/img/dots.svg"
-                      alt="Carregando mais vagas..."
-                    />
-                  ) : (
-                    <S.ShowMoreButton role="button" onClick={handleShowMore}>
-                      <p>Carregar mais</p>
-                      <ArrowDown size={35} />
-                    </S.ShowMoreButton>
-                  )}
-                </S.ShowMore>
+                {hasMoreJobs && (
+                  <S.ShowMore>
+                    {loading ? (
+                      <S.ShowMoreLoading
+                        src="/img/dots.svg"
+                        alt="Carregando mais vagas..."
+                      />
+                    ) : (
+                      <S.ShowMoreButton role="button" onClick={handleShowMore}>
+                        <p>Carregar mais</p>
+                        <ArrowDown size={35} />
+                      </S.ShowMoreButton>
+                    )}
+                  </S.ShowMore>
+                )}
               </>
             ) : (
               <Empty

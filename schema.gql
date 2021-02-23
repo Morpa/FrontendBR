@@ -54,7 +54,7 @@ type Count {
 type Query {
   getJobs(limit: Int!, currentPage: Int, filter: [String]): [Job]!
   countJobs: Count!
-  getLabels: [Job]!
+  getQuantity(filter: [String]): Int
 }
 
 enum CacheControlScope {
