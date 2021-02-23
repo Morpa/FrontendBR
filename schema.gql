@@ -51,10 +51,16 @@ type Count {
   open_issues_count: Int!
 }
 
+type RateLimit {
+  limit: Int!
+  remaining: Int!
+}
+
 type Query {
   getJobs(limit: Int!, currentPage: Int, filter: [String]): [Job]!
   countJobs: Count!
   getQuantity(filter: [String]): Int
+  rateLimit: RateLimit
 }
 
 enum CacheControlScope {
