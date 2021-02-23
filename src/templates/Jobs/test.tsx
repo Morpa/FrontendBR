@@ -8,7 +8,7 @@ import apolloCache from 'utils/apolloCache'
 import filterItemsMock from 'components/ExploreSidebar/mock'
 
 import Jobs from '.'
-import { fetchMoreJobs, jobsMock, noJobsMock } from './mock'
+import { countJobsMock, fetchMoreJobs, jobsMock, noJobsMock } from './mock'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
@@ -18,7 +18,15 @@ useRouter.mockImplementation(() => ({
   push,
   query: '',
   asPath: '',
-  route: '/'
+  route: '/',
+  prefetch: jest.fn().mockResolvedValue(undefined)
+}))
+
+jest.mock('next/link', () => ({
+  __esModule: true,
+  default: function Mock({ children }: { children: React.ReactNode }) {
+    return <div>{children}</div>
+  }
 }))
 
 jest.mock('templates/Base', () => ({
@@ -31,12 +39,12 @@ jest.mock('templates/Base', () => ({
 describe('<Jobs />', () => {
   it('should render sections', async () => {
     renderWithTheme(
-      <MockedProvider mocks={[jobsMock]} addTypename={false}>
+      <MockedProvider mocks={[jobsMock, countJobsMock]} addTypename={false}>
         <Jobs filterItems={filterItemsMock} />
       </MockedProvider>
     )
 
-    expect(await screen.findByText(/job/i)).toBeInTheDocument()
+    expect(await screen.findByText(/firstjob/i)).toBeInTheDocument()
 
     expect(
       await screen.findByRole('button', { name: /carregar mais/i })
@@ -45,18 +53,21 @@ describe('<Jobs />', () => {
 
   it('should render more jobs when show more is clicked', async () => {
     renderWithTheme(
-      <MockedProvider mocks={[jobsMock, fetchMoreJobs]} cache={apolloCache}>
+      <MockedProvider
+        mocks={[jobsMock, fetchMoreJobs, countJobsMock]}
+        cache={apolloCache}
+      >
         <Jobs filterItems={filterItemsMock} />
       </MockedProvider>
     )
 
-    expect(await screen.findByText(/job/i)).toBeInTheDocument()
+    expect(await screen.findByText(/firstjob/i)).toBeInTheDocument()
 
     userEvent.click(
       await screen.findByRole('button', { name: /carregar mais/i })
     )
 
-    expect(await screen.findByText(/more job/i)).toBeInTheDocument()
+    expect(await screen.findByText(/MoreJob/i)).toBeInTheDocument()
   })
 
   it('should change push router when selecting a filter', async () => {

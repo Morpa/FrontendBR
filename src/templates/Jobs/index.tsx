@@ -10,11 +10,11 @@ import { parsedQueryStringToFilter } from 'utils/filter'
 import ExploreSidebar, { ItemProps } from 'components/ExploreSidebar'
 import { Grid } from 'components/Grid'
 import JobCard from 'components/JobCard'
+import Empty from 'components/Empty'
 
 import Base from 'templates/Base'
 
 import * as S from './styles'
-import Empty from 'components/Empty'
 
 export type HomeTemplateProps = {
   filterItems: ItemProps[]
@@ -75,46 +75,44 @@ const Jobs = ({ filterItems }: HomeTemplateProps) => {
           onFilter={handleFilter}
         />
 
-        {
-          <section>
-            {data.getJobs.length ? (
-              <>
-                <Grid>
-                  {data?.getJobs.map((job) => (
-                    <JobCard
-                      key={job.id}
-                      title={job.title}
-                      html_url={job.html_url}
-                      created_at={job.created_at}
-                      labels={job.labels}
+        <section>
+          {data.getJobs.length ? (
+            <>
+              <Grid>
+                {data?.getJobs.map((job) => (
+                  <JobCard
+                    key={job.id}
+                    title={job.title}
+                    html_url={job.html_url}
+                    created_at={job.created_at}
+                    labels={job.labels}
+                  />
+                ))}
+              </Grid>
+              {hasMoreJobs && (
+                <S.ShowMore>
+                  {loading ? (
+                    <S.ShowMoreLoading
+                      src="/img/dots.svg"
+                      alt="Carregando mais vagas..."
                     />
-                  ))}
-                </Grid>
-                {hasMoreJobs && (
-                  <S.ShowMore>
-                    {loading ? (
-                      <S.ShowMoreLoading
-                        src="/img/dots.svg"
-                        alt="Carregando mais vagas..."
-                      />
-                    ) : (
-                      <S.ShowMoreButton role="button" onClick={handleShowMore}>
-                        <p>Carregar mais</p>
-                        <ArrowDown size={35} />
-                      </S.ShowMoreButton>
-                    )}
-                  </S.ShowMore>
-                )}
-              </>
-            ) : (
-              <Empty
-                title="Opss..."
-                description="A vaga que você procura não existe"
-                hasLink
-              />
-            )}
-          </section>
-        }
+                  ) : (
+                    <S.ShowMoreButton role="button" onClick={handleShowMore}>
+                      <p>Carregar mais</p>
+                      <ArrowDown size={35} />
+                    </S.ShowMoreButton>
+                  )}
+                </S.ShowMore>
+              )}
+            </>
+          ) : (
+            <Empty
+              title="Opss..."
+              description="A vaga que você procura não existe"
+              hasLink
+            />
+          )}
+        </section>
       </S.Main>
     </Base>
   )
