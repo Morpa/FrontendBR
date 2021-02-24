@@ -42,7 +42,7 @@ export default function Home(props: MainProps) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
   const { data } = await apolloClient.query<JobsOpen>({
@@ -51,6 +51,7 @@ export async function getServerSideProps() {
 
   return {
     props: {
+      revalidate: 60,
       jobs: data.countJobs!.open_issues_count
     }
   }
