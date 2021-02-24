@@ -19,6 +19,13 @@
 
 </p>
 
+## About the project
+I did this project to study some things about Apollo and GraphQL. Inspired by [Backend Brasil](https://backendbrasil.com.br/)
+
+Data are from the repository issues [Front-End Brasil](https://github.com/frontendbr/vagas).
+
+To consume the data, I created a GraphQL wrapper from the Github rest API, where you can see it [here](https://github.com/Morpa/github-api-graphql-wrapper)
+
 ## What is inside?
 
 This project uses lot of stuff as:
@@ -32,6 +39,8 @@ This project uses lot of stuff as:
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
 - [Husky](https://github.com/typicode/husky)
+- [GraphQL](https://graphql.org/)
+- [Apollo](https://www.apollographql.com/)
 
 ## Getting Started
 

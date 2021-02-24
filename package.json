@@ -38,9 +38,11 @@
     "lodash.xor": "^4.5.0",
     "next": "^10.0.6",
     "next-pwa": "^5.0.5",
+    "next-seo": "^4.20.0",
     "nprogress": "^0.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-github-corner": "^2.5.0",
     "styled-components": "5.2.1",
     "styled-media-query": "^2.1.2",
     "tinycolor2": "^1.4.2"
