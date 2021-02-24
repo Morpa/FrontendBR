@@ -18,6 +18,7 @@ import * as S from './styles'
 
 export type HomeTemplateProps = {
   filterItems: ItemProps[]
+  rate: number
 }
 
 const Jobs = ({ filterItems }: HomeTemplateProps) => {
