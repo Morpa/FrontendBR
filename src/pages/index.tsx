@@ -50,8 +50,8 @@ export async function getStaticProps() {
   })
 
   return {
+    revalidate: 60,
     props: {
-      revalidate: 60,
       jobs: data.countJobs!.open_issues_count
     }
   }
