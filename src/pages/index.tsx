@@ -46,7 +46,8 @@ export async function getStaticProps() {
   const apolloClient = initializeApollo()
 
   const { data } = await apolloClient.query<JobsOpen>({
-    query: QUERY_JOBS_OPEN
+    query: QUERY_JOBS_OPEN,
+    fetchPolicy: 'no-cache'
   })
 
   return {
